@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+   <item android:title="@string/gallery_label"
+      android:alphabeticShortcut="@string/gallery_shortcut" 
+      android:id="@+id/Gallery">
+</item>
+<item android:title="@string/camera_label"
+      android:alphabeticShortcut="@string/camera_shortcut" 
+      android:id="@+id/Camera">
+</item>
+</menu>
