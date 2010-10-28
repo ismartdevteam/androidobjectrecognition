@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">Android Object Recognition</string>
+<string name="camera_label">Camera</string>
+<string name="gallery_label">Gallery</string>
+<string name="camera_shortcut">c</string>
+<string name="gallery_shortcut">g</string>
+</resources>

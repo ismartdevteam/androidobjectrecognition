@@ -1,0 +1,44 @@
+Dependencies:
+0. Android sdk
+1. crystax's patched ndk with stl support
+2. android-opencv
+3. So far only proven to build on linux
+
+I'll assume you are familiar with the android sdk... out of laziness on my part :)
+
+The android ndk 1.6 doesn't support most of stl so to build the native 
+library you must use an unsupported build of the NDK 
+ available here -
+ 	http://crystax.net/androidndk.php
+
+I am building this on 64 bit Ubuntu 9.10 linux and used the linux-x86 build of the ndk
+from crystax - http://crystax.net/data/android-ndk-1.6_r1-linux-x86-crystax.tar.bz2
+just untar and then cd to the directory.  From there run build/host-setup.sh and you can
+use it just like the other ndk but now with std::vector<IpPoint> and such.
+
+Grab opencv with git
+
+git clone git://github.com/billmccord/OpenCV-Android
+
+ln -s <opencv directory> <ndk directory>/apps/opencv
+
+then from ndk directory do 
+
+make APP=opencv
+
+That should make opencv.... 
+
+Ok. I use swig to generate the jni wrappers... grab swig if you don't have it.  The swig wrappers are already
+generated but, if you change code, rerun the swig.sh in the jni directory.
+
+make a soft link to the OpenAndroid Surf directory in the apps dir of the ndk.
+
+ln -s path/to/OpenAndroidSurf/ <ndk>/apps/OpenAndroidSurf
+
+now run make APP=OpenAndroidSurf from the ndk root directory.
+
+this will put OpenSURF.lib in the lib/armabi/ directory. Make sure to copy the opencv.lib to this directory also.
+
+goodluck, these instructions are probably incomplete and haven't been tested.  let me know if you have issues.
+ethan.rublee@gmail.com
+ethan.rublee - gmail chat
