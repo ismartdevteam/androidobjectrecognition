@@ -94,10 +94,11 @@ public class ObjRecogCameraActivity extends Activity {
 	PictureCallback rawCallback = new PictureCallback() 
 	{		
 		public void onPictureTaken(byte[] data, Camera camera) 
-		{			
-			Log.d(TAG, "onPictureTaken - raw");		
+		{
+			Log.d(TAG, "onPictureTaken - raw - ");		
 		}	
 	};	
+	
 	/** Handles data for jpeg picture */	
 	PictureCallback jpegCallback = new PictureCallback() 
 	{		
@@ -130,6 +131,7 @@ public class ObjRecogCameraActivity extends Activity {
 
 			}			
 			Log.d(TAG, "onPictureTaken - jpeg");		
+			mPreview.mCamera.startPreview();
 		}	
 	};
 }
