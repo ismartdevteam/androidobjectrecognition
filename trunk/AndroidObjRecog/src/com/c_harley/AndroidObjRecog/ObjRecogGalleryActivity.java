@@ -3,12 +3,10 @@
  * COT 5930 - Digital Image Processing
  * Professor Oge Marques
  * 
- * Most of this code has been reused by Ethan Rublee's porting of the OpenSURF library. Adaptations to this code have been made
- * by the above mentioned author.
+ * Most of this code has been reused by Ethan Rublee's porting of the OpenSURF library. 
+ * Adaptations to this code have been made by the above mentioned author.
  */
 package com.c_harley.AndroidObjRecog;
-
-import java.io.IOException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,15 +16,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.hardware.Camera;
-import android.hardware.Camera.Parameters;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -36,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.c_harley.AndroidObjRecog.SurfLib.SurfInfo;
-import com.theveganrobot.OpenASURF.swig.IpPairVector;
 
 public class ObjRecogGalleryActivity extends Activity {
 

@@ -32,26 +32,31 @@ public class SurfLib {
 		public Bitmap orignalBitmap;
 		public Bitmap outputBitmap;
 		public int id;
-		public SurfInfo(SURFjni surf, Bitmap bitmap, int id) {
+		//public byte[] imageData;
+		
+		
+		/**
+		 * SurfInfo constructor adapted to add byte[] imageData as an attribute of the class.
+		 * @param surf
+		 * @param bitmap
+		 * @param data - image byte data.
+		 * @author Charles Norona, cnorona1@fau.edu
+		 */
+		public SurfInfo(SURFjni surf, Bitmap bitmap) 
+		{
+			this.surf = surf;
+			this.orignalBitmap = bitmap;
+		}
+		
+		public SurfInfo(SURFjni surf, Bitmap bitmap, int id) 
+		{
 			this.surf = surf;
 			this.orignalBitmap = bitmap;
 			this.id = id;
 		}
 	}
-	
-	private HashMap<Integer, SurfInfo> surfmap;
-	
-	public SurfLib(){
-		surfmap = new HashMap<Integer, SurfInfo>();
-	}
-	
-	public SurfInfo getSurfInfo(int rid){
-		return surfmap.get(rid);
-	}
-	
 	public static void DrawSurfPoints( SurfInfo surfinfo, int which, IpPairVector matches){
 		
-
 		IpointVector points = surfinfo.surf.getIpts();
 		
 		surfinfo.outputBitmap = surfinfo.orignalBitmap.copy(Config.RGB_565, true);
@@ -88,9 +93,6 @@ public class SurfLib {
 					orientpaint);
 			canvas.drawCircle(point.getX(), point.getY(), point.getScale(),
 					paint);
-			
-			
-
 		}
 		
 		if(matches != null){
@@ -102,65 +104,8 @@ public class SurfLib {
 						+ point.getDy(),
 						dxdypaint);
 			}
-			
-		}
-		
-		
+		}	
 	}
-	
-	public IpPairVector findMatchs(int id1, int id2){
-	
-		if(!surfmap.containsKey(id1)|| !surfmap.containsKey(id2)){
-			return null;
-		}
-		IpointVector ipts1 = surfmap.get(id1).surf.getIpts();
-		IpointVector  ipts2 = surfmap.get(id2).surf.getIpts();
-		IpPairVector matches = new IpPairVector();
-	
-		surfjnimodule.getMatches(ipts1, ipts2, matches);
-		return matches;
-	}
-	public SurfInfo surfify(int rid, Context ctx){
-		return surfify(rid, ctx, true);
-	}
-	
-	public SurfInfo surfify(int rid, Context ctx, boolean draw){
-		Bitmap bmp = loadBitmapFromResource(rid,ctx);
-		int width = bmp.getWidth();
-		int height = bmp.getHeight();
-		int[] pixels = new int[width * height];
-		
-		
-		bmp.getPixels(pixels, 0, width, 0, 0, width, height);
-		
-		
-		SURFjni surf = new SURFjni(pixels, width, height);
-		// surf.surfDetDes();
-		surf.surfDetDes(false, 4, 4, 2, 0.002f);//The last parameter is the threshold. Increase it for less POIs.
-
-		
-		
-		SurfInfo info = new SurfInfo(surf, bmp, rid);
-	
-		if(draw)
-			DrawSurfPoints(info,0,null);
-		
-		surfmap.put(rid, info);
-		return info;
-		
-		
-	}
-	
-
-	public Bitmap loadBitmapFromResource(int resourceId, Context ctx) {
-
-		BitmapFactory.Options ops = new BitmapFactory.Options();
-
-		InputStream is = ctx.getResources().openRawResource(resourceId);
-		Bitmap bitmap = loadBitmapFromStream(is, ops);
-		return bitmap;
-	}
-
 	public static final Bitmap loadBitmapFromStream(InputStream stream,
 			BitmapFactory.Options ops) {
 		Bitmap bitmap = null;
@@ -177,6 +122,107 @@ public class SurfLib {
 
 		return bitmap;
 
+	}
+	
+	int width;
+
+	int height;
+	
+	int[] pixels;
+	
+	private static final String TAG = "SurfInfo";
+	
+	private HashMap<Integer, SurfInfo> surfmap;
+
+	private SURFjni surf;
+	private SurfInfo info;
+	
+	public SurfLib(){
+		surfmap = new HashMap<Integer, SurfInfo>();
+	}
+	
+	public IpPairVector findMatchs(int id1, int id2){
+	
+		if(!surfmap.containsKey(id1)|| !surfmap.containsKey(id2)){
+			return null;
+		}
+		IpointVector ipts1 = surfmap.get(id1).surf.getIpts();
+		IpointVector  ipts2 = surfmap.get(id2).surf.getIpts();
+		IpPairVector matches = new IpPairVector();
+	
+		surfjnimodule.getMatches(ipts1, ipts2, matches);
+		return matches;
+	}
+	public SurfInfo getSurfInfo(int rid){
+		return surfmap.get(rid);
+	}
+	
+	public Bitmap loadBitmapFromResource(int resourceId, Context ctx) {
+
+		BitmapFactory.Options ops = new BitmapFactory.Options();
+
+		InputStream is = ctx.getResources().openRawResource(resourceId);
+		Bitmap bitmap = loadBitmapFromStream(is, ops);
+		return bitmap;
+	}
+
+	//TODO: Adapt this version to convert JPEG data into a Bitmap.
+	/**
+	 * Acquires the SURF descriptors of the image. Adapted from 
+	 * surfify(int rid, Context ctx, boolean draw).
+	 * @param data - Byte array of image taken
+	 * @param ctx
+	 * @param draw
+	 * @return SurfInfo object
+	 * @author Charles Norona, cnorona1@fau.edu
+	 */
+	public SurfInfo surfify(Bitmap bitmap, Context ctx, boolean draw){
+		//Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+		Log.d(TAG, "surfifying!");
+		width = bitmap.getWidth();
+		height = bitmap.getHeight();
+		pixels = new int[width * height];
+		
+		bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
+		
+		surf = new SURFjni(pixels, width, height);
+		//The last parameter is the threshold. Increase it for less POIs.
+		surf.surfDetDes(false, 4, 4, 2, 0.001f);
+
+		info = new SurfInfo(surf, bitmap);
+	
+		if(draw)
+			DrawSurfPoints(info,0,null);
+		
+		surfmap.put(0, info);
+		Log.d(TAG, "surfifying successful!");
+		return info;	
+	}
+
+	public SurfInfo surfify(int rid, Context ctx){
+		return surfify(rid, ctx, true);
+	}
+
+	public SurfInfo surfify(int rid, Context ctx, boolean draw){
+		Bitmap bmp = loadBitmapFromResource(rid,ctx);
+		int width = bmp.getWidth();
+		int height = bmp.getHeight();
+		int[] pixels = new int[width * height];
+		
+		bmp.getPixels(pixels, 0, width, 0, 0, width, height);
+		
+		SURFjni surf = new SURFjni(pixels, width, height);
+		
+		//The last parameter is the threshold. Increase it for less POIs.
+		surf.surfDetDes(false, 4, 4, 2, 0.002f);
+		
+		SurfInfo info = new SurfInfo(surf, bmp, rid);
+	
+		if(draw)
+			DrawSurfPoints(info,0,null);
+		
+		surfmap.put(rid, info);
+		return info;	
 	}
 	
 }
