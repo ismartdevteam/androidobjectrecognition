@@ -35,6 +35,7 @@ import java.util.List;
 public class ObjRecogCameraActivity extends Activity {    
 	private Preview mPreview;
 	private String TAG = "ObjRecogCameraActivity";
+	private int number;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
