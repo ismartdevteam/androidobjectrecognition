@@ -80,6 +80,7 @@ public class SurfLib {
 		dxdypaint.setStyle(Style.STROKE);
 
 		Ipoint point = null;
+		//TODO: Use this to populate a list of points and their attributes
 		for (int i = 0; i < points.size(); i++) {
 
 			point = points.get(i);
@@ -153,6 +154,7 @@ public class SurfLib {
 		surfjnimodule.getMatches(ipts1, ipts2, matches);
 		return matches;
 	}
+	
 	public SurfInfo getSurfInfo(int rid){
 		return surfmap.get(rid);
 	}

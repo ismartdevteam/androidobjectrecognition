@@ -108,12 +108,10 @@ public class ObjRecogGalleryActivity extends Activity {
 		g.setAdapter(new ImageAdapter(this));
 
 		g.setOnItemClickListener(new OnItemClickListener() {
+			@SuppressWarnings("unchecked")
 			public void onItemClick(AdapterView parent, View v, int position,
 					long id) {
 				showDialog(SURF_PROGRESS_BAR);
-//				if((int)id == R.drawable.testcorrelation01)
-//					new Correspond().execute((int)id);
-//				else
 					new SurfTask().execute((int) id);
 			}
 		});
@@ -122,19 +120,6 @@ public class ObjRecogGalleryActivity extends Activity {
 		surfedbitmap = (Bitmap) getLastNonConfigurationInstance();
 		imgview.setImageBitmap(surfedbitmap);
 		surflib = new SurfLib();
-
-		/*
-		 * OpenSURF mOpenCV = new OpenSURF();
-		 * 
-		 * 
-		 * 
-		 * if (!mOpenCV.setSourceImage(pixels, width, height)) {
-		 * 
-		 * Log.d("Opencv",
-		 * "Error occurred while setting the source image pixels"); }
-		 * 
-		 * Ipoint ip = new Ipoint(); ip.setDx(10);
-		 */
 	}
 
 	public class ImageAdapter extends BaseAdapter {
@@ -238,54 +223,6 @@ public class ObjRecogGalleryActivity extends Activity {
 
 			surfedbitmap = result;
 			dismissDialog(SURF_PROGRESS_BAR);
-			// removeDialog(SURF_PROGRESS_BAR);
 		}
 	}
-	
-//	private class Correspond extends AsyncTask<Integer, Integer, Bitmap> 
-//	{
-//		@Override
-//		protected Bitmap doInBackground(Integer... id) {
-//			SurfInfo info01 = surflib.surfify(R.drawable.testcorrelation01, ObjRecogGalleryActivity.this,false);
-//			SurfInfo info02 = surflib.surfify(R.drawable.testcorrelation02, ObjRecogGalleryActivity.this,false);
-//
-//			IpPairVector matches = new IpPairVector();
-//
-//			matches = surflib.findMatchs(info01.id, info02.id);
-//
-//			SurfLib.DrawSurfPoints(info01, 0, matches);
-//			SurfLib.DrawSurfPoints(info02,1, matches);
-//
-//			return info01.outputBitmap;
-//		}
-//
-//		@Override
-//		protected void onProgressUpdate(Integer... progress) {
-//			//Do nothing
-//		}
-//
-//		/*
-//		 * (non-Javadoc)
-//		 * 
-//		 * @see android.os.AsyncTask#onCancelled()
-//		 */
-//		@Override
-//		protected void onCancelled() {
-//			dismissDialog(SURF_PROGRESS_BAR);
-//			showDialog(SURF_INTERUPTED);
-//			super.onCancelled();
-//		}
-//
-//		@Override
-//		protected void onPostExecute(Bitmap result) {
-//			ImageView view = (ImageView) findViewById(R.id.surfimage);
-//			ImageView view2 = (ImageView) findViewById(R.id.surfimage2);
-//			view.setImageBitmap(result);
-//			view2.setImageBitmap(surflib.getSurfInfo(R.drawable.testcorrelation02).outputBitmap);
-//
-//			surfedbitmap = result;
-//			dismissDialog(SURF_PROGRESS_BAR);
-//			// removeDialog(SURF_PROGRESS_BAR);
-//		}
-//	}
 }
