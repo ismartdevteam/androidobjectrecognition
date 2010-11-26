@@ -31,6 +31,13 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.c_harley.AndroidObjRecog.SurfLib.SurfInfo;
 
+/**
+ * This activity is used to take an existing picture from memory and
+ * calculate its SURF descriptors.
+ * 
+ * @author Modified by Charles Norona
+ * @author Originally created by Ethan Rublee
+ */
 public class ObjRecogGalleryActivity extends Activity {
 
 	@Override

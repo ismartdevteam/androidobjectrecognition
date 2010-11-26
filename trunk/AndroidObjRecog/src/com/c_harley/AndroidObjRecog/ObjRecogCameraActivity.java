@@ -41,6 +41,9 @@ import com.c_harley.AndroidObjRecog.SurfLib.SurfInfo;
 // ----------------------------------------------------------------------
 
 /**
+ * The activity where the user take pictures using the device's camera and immediately
+ * begin calculating SURF descriptors of the image.
+ * 
  * @author Charles Norona
  *
  */
