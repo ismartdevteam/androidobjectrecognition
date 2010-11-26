@@ -1,7 +1,7 @@
 package com.c_harley.AndroidObjRecog;
 
 /*
- * This code was created by Ethan Rublee who ported the OpenSURF library to Android.
+ * Most of this code was created by Ethan Rublee who ported the OpenSURF library to Android. -CN
  */
 
 import java.io.IOException;
@@ -25,6 +25,14 @@ import android.graphics.Paint.Style;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * This is the Android variation of the OpenSURF library originally created
+ * by Chris Evans.
+ * 
+ * @author Modified by Charles Norona
+ * @author Originally created by Ethan Rublee
+ * @author OpenSURF by Chris Evans
+ */
 public class SurfLib {
 	
 	public static IpointVector surfPoints = null;
@@ -57,7 +65,6 @@ public class SurfLib {
 		}
 	}
 	
-	//TODO: Use this to populate a list of points and their attributes
 	/**
 	 * Modified to acquire information on descriptors in a data set, surfPoints.
 	 * @param surfinfo
