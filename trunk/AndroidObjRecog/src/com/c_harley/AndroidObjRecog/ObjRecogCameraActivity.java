@@ -46,6 +46,14 @@ import com.c_harley.AndroidObjRecog.SurfLib.SurfInfo;
  */
 public class ObjRecogCameraActivity extends Activity {  
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		//Invoke Garbage Collector to clear memory.
+		System.gc();
+	}
+
 	private class SurfTask extends AsyncTask<Bitmap, Bitmap, Bitmap> 
 	{
 		@Override
@@ -86,8 +94,8 @@ public class ObjRecogCameraActivity extends Activity {
 	private SurfLib surflib;
 	private static final int SURF_PROGRESS_BAR = 1;
 	public static final int SURF_INTERUPTED = 2;
-	public static final float scaleX = 0.40f;
-	public static final float scaleY = 0.40f;
+	public static final float scaleX = 0.30f;
+	public static final float scaleY = 0.30f;
 	Matrix aMatrix;
 	
 	ShutterCallback shutterCallback = new ShutterCallback() 
@@ -123,23 +131,11 @@ public class ObjRecogCameraActivity extends Activity {
 			
 			width =  (int) ((float)scaleX * width);
 			height =  (int) ((float)scaleY * height);
-			 
-//			Bitmap resizedBitmap = Bitmap.createBitmap(bitmap,
-//					0,0,
-//					width,
-//					height, 
-//					aMatrix, false);
 			
-			//Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, width, height, false);
 			bitmap = Bitmap.createScaledBitmap(bitmap, width, height, false);
 			
-			//Get new 
-//			width = resizedBitmap.getWidth();
-//			height = resizedBitmap.getHeight();
 			width = bitmap.getWidth();
 			height = bitmap.getHeight();
-			
-			//int[] pixels = new int[width * height];
 
 			showDialog(SURF_PROGRESS_BAR);
 			//new SurfTask().execute(resizedBitmap);	
@@ -152,7 +148,7 @@ public class ObjRecogCameraActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		// Hide the window title.
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 

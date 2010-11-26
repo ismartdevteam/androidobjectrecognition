@@ -33,6 +33,14 @@ import com.c_harley.AndroidObjRecog.SurfLib.SurfInfo;
 
 public class ObjRecogGalleryActivity extends Activity {
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		//Invoke Garbage Collector to clear memory.
+		System.gc();
+	}
+
 	private static final int SURF_PROGRESS_BAR = 1;
 	public static final int SURF_INTERUPTED = 2;
 	private Bitmap surfedbitmap;
