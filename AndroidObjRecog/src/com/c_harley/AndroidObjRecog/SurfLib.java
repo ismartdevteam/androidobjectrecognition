@@ -26,14 +26,14 @@ import android.util.Log;
 
 public class SurfLib {
 	
+	public static IpointVector surfPoints = null;
+	
 	public static class SurfInfo{
 		public SURFjni surf;
 		
 		public Bitmap orignalBitmap;
 		public Bitmap outputBitmap;
-		public int id;
-		//public byte[] imageData;
-		
+		public int id;		
 		
 		/**
 		 * SurfInfo constructor adapted to add byte[] imageData as an attribute of the class.
@@ -55,9 +55,21 @@ public class SurfLib {
 			this.id = id;
 		}
 	}
+	
+	//TODO: Use this to populate a list of points and their attributes
+	/**
+	 * Modified to acquire information on descriptors in a data set, surfPoints.
+	 * @param surfinfo
+	 * @param which
+	 * @param matches
+	 * @author Modified by Charles Norona
+	 */
 	public static void DrawSurfPoints( SurfInfo surfinfo, int which, IpPairVector matches){
 		
 		IpointVector points = surfinfo.surf.getIpts();
+		IpPairVector matchVector = new IpPairVector();
+		//compareDescriptors(surfPoints, points, matchVector);//Get matched descriptors
+		surfPoints = points;//Update surfPoints
 		
 		surfinfo.outputBitmap = surfinfo.orignalBitmap.copy(Config.RGB_565, true);
 		Canvas canvas = new Canvas(surfinfo.outputBitmap);
@@ -80,7 +92,7 @@ public class SurfLib {
 		dxdypaint.setStyle(Style.STROKE);
 
 		Ipoint point = null;
-		//TODO: Use this to populate a list of points and their attributes
+		
 		for (int i = 0; i < points.size(); i++) {
 
 			point = points.get(i);
@@ -168,7 +180,6 @@ public class SurfLib {
 		return bitmap;
 	}
 
-	//TODO: Adapt this version to convert JPEG data into a Bitmap.
 	/**
 	 * Acquires the SURF descriptors of the image. Adapted from 
 	 * surfify(int rid, Context ctx, boolean draw).
@@ -227,4 +238,23 @@ public class SurfLib {
 		return info;	
 	}
 	
+	/**
+	 * Takes two vectors of descriptor points and populates the third vector, matchPoints, with matched 
+	 * points from both vectors.
+	 * @param oldPoints
+	 * @param newPoints
+	 * @param matchPoints
+	 * @author Charles Norona
+	 */
+	public static void compareDescriptors(IpointVector firstSet, IpointVector secondSet, IpPairVector matchSet)
+	{
+		Log.d(TAG,"Comparing Descriptors");
+		
+		if(firstSet != null)
+			surfjnimodule.getMatches(firstSet, secondSet, matchSet);
+		else
+		{
+			Log.d(TAG, "Old set does not exist, yet!");
+		}
+	}
 }

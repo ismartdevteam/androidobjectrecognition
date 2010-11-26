@@ -38,5 +38,4 @@ public class surfjnimodule {
     long cPtr = surfjnimoduleJNI.loadPixels(pixels, width, height);
     return (cPtr == 0) ? null : new SWIGTYPE_p_IplImage(cPtr, false);
   }
-
 }
