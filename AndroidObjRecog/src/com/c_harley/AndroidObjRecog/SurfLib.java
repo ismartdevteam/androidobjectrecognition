@@ -23,6 +23,7 @@ import android.graphics.Paint;
 import android.graphics.Bitmap.Config;
 import android.graphics.Paint.Style;
 import android.util.Log;
+import android.widget.Toast;
 
 public class SurfLib {
 	
@@ -67,8 +68,10 @@ public class SurfLib {
 	public static void DrawSurfPoints( SurfInfo surfinfo, int which, IpPairVector matches){
 		
 		IpointVector points = surfinfo.surf.getIpts();
-		IpPairVector matchVector = new IpPairVector();
+		//IpPairVector matchVector = new IpPairVector();
+		matches = new IpPairVector();
 		//compareDescriptors(surfPoints, points, matchVector);//Get matched descriptors
+		compareDescriptors(surfPoints, points, matches);//Get matched descriptors
 		surfPoints = points;//Update surfPoints
 		
 		surfinfo.outputBitmap = surfinfo.orignalBitmap.copy(Config.RGB_565, true);
@@ -90,6 +93,13 @@ public class SurfLib {
 		dxdypaint.setColor(Color.YELLOW);
 		dxdypaint.setStrokeWidth(2);
 		dxdypaint.setStyle(Style.STROKE);
+		
+		Paint textPaint = new Paint();
+		textPaint.setAntiAlias(true);
+		textPaint.setColor(Color.RED);
+		textPaint.setStrokeWidth(2);
+		textPaint.setStyle(Style.STROKE);
+		textPaint.setTextSize(30f);
 
 		Ipoint point = null;
 		
@@ -117,7 +127,8 @@ public class SurfLib {
 						+ point.getDy(),
 						dxdypaint);
 			}
-		}	
+			canvas.drawText("Match results: " + matches.size() + "/" + points.size(), 30f, 30f, textPaint);
+		}
 	}
 	public static final Bitmap loadBitmapFromStream(InputStream stream,
 			BitmapFactory.Options ops) {
@@ -251,7 +262,10 @@ public class SurfLib {
 		Log.d(TAG,"Comparing Descriptors");
 		
 		if(firstSet != null)
+		{
 			surfjnimodule.getMatches(firstSet, secondSet, matchSet);
+			Log.d(TAG,"Matches found: " + matchSet.size());
+		}
 		else
 		{
 			Log.d(TAG, "Old set does not exist, yet!");
