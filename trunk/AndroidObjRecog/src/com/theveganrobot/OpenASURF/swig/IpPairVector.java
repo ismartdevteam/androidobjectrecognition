@@ -9,71 +9,71 @@
 package com.theveganrobot.OpenASURF.swig;
 
 public class IpPairVector {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+	private long swigCPtr;
+	protected boolean swigCMemOwn;
 
-  protected IpPairVector(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
+	protected IpPairVector(long cPtr, boolean cMemoryOwn) {
+		swigCMemOwn = cMemoryOwn;
+		swigCPtr = cPtr;
+	}
 
-  protected static long getCPtr(IpPairVector obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+	protected static long getCPtr(IpPairVector obj) {
+		return (obj == null) ? 0 : obj.swigCPtr;
+	}
 
-  @Override
-protected void finalize() {
-    delete();
-  }
+	@Override
+	protected void finalize() {
+		delete();
+	}
 
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        surfjnimoduleJNI.delete_IpPairVector(swigCPtr);
-      }
-      swigCPtr = 0;
-    }
-  }
+	public synchronized void delete() {
+		if (swigCPtr != 0) {
+			if (swigCMemOwn) {
+				swigCMemOwn = false;
+				surfjnimoduleJNI.delete_IpPairVector(swigCPtr);
+			}
+			swigCPtr = 0;
+		}
+	}
 
-  public IpPairVector() {
-    this(surfjnimoduleJNI.new_IpPairVector__SWIG_0(), true);
-  }
+	public IpPairVector() {
+		this(surfjnimoduleJNI.new_IpPairVector__SWIG_0(), true);
+	}
 
-  public IpPairVector(long n) {
-    this(surfjnimoduleJNI.new_IpPairVector__SWIG_1(n), true);
-  }
+	public IpPairVector(long n) {
+		this(surfjnimoduleJNI.new_IpPairVector__SWIG_1(n), true);
+	}
 
-  public long size() {
-    return surfjnimoduleJNI.IpPairVector_size(swigCPtr, this);
-  }
+	public long size() {
+		return surfjnimoduleJNI.IpPairVector_size(swigCPtr, this);
+	}
 
-  public long capacity() {
-    return surfjnimoduleJNI.IpPairVector_capacity(swigCPtr, this);
-  }
+	public long capacity() {
+		return surfjnimoduleJNI.IpPairVector_capacity(swigCPtr, this);
+	}
 
-  public void reserve(long n) {
-    surfjnimoduleJNI.IpPairVector_reserve(swigCPtr, this, n);
-  }
+	public void reserve(long n) {
+		surfjnimoduleJNI.IpPairVector_reserve(swigCPtr, this, n);
+	}
 
-  public boolean isEmpty() {
-    return surfjnimoduleJNI.IpPairVector_isEmpty(swigCPtr, this);
-  }
+	public boolean isEmpty() {
+		return surfjnimoduleJNI.IpPairVector_isEmpty(swigCPtr, this);
+	}
 
-  public void clear() {
-    surfjnimoduleJNI.IpPairVector_clear(swigCPtr, this);
-  }
+	public void clear() {
+		surfjnimoduleJNI.IpPairVector_clear(swigCPtr, this);
+	}
 
-  public void add(IpPair x) {
-    surfjnimoduleJNI.IpPairVector_add(swigCPtr, this, IpPair.getCPtr(x), x);
-  }
+	public void add(IpPair x) {
+		surfjnimoduleJNI.IpPairVector_add(swigCPtr, this, IpPair.getCPtr(x), x);
+	}
 
-  public IpPair get(int i) {
-    return new IpPair(surfjnimoduleJNI.IpPairVector_get(swigCPtr, this, i), false);
-  }
+	public IpPair get(int i) {
+		return new IpPair(surfjnimoduleJNI.IpPairVector_get(swigCPtr, this, i), false);
+	}
 
-  public void set(int i, IpPair val) {
-    surfjnimoduleJNI.IpPairVector_set(swigCPtr, this, i, IpPair.getCPtr(val), val);
-  }
+	public void set(int i, IpPair val) {
+		surfjnimoduleJNI.IpPairVector_set(swigCPtr, this, i, IpPair.getCPtr(val), val);
+	}
 
 }

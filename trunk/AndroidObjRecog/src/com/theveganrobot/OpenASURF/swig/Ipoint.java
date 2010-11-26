@@ -9,115 +9,131 @@
 package com.theveganrobot.OpenASURF.swig;
 
 public class Ipoint {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+	private long swigCPtr;
+	protected boolean swigCMemOwn;
 
-  protected Ipoint(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
+	protected Ipoint(long cPtr, boolean cMemoryOwn) {
+		swigCMemOwn = cMemoryOwn;
+		swigCPtr = cPtr;
+	}
 
-  protected static long getCPtr(Ipoint obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+	protected static long getCPtr(Ipoint obj) {
+		return (obj == null) ? 0 : obj.swigCPtr;
+	}
 
-  @Override
-protected void finalize() {
-    delete();
-  }
+	@Override
+	protected void finalize() {
+		delete();
+	}
 
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        surfjnimoduleJNI.delete_Ipoint(swigCPtr);
-      }
-      swigCPtr = 0;
-    }
-  }
+	public synchronized void delete() {
+		if (swigCPtr != 0) {
+			if (swigCMemOwn) {
+				swigCMemOwn = false;
+				surfjnimoduleJNI.delete_Ipoint(swigCPtr);
+			}
+			swigCPtr = 0;
+		}
+	}
 
-  public static int GetIpVecSize(IpointVector vec) {
-    return surfjnimoduleJNI.Ipoint_GetIpVecSize(IpointVector.getCPtr(vec), vec);
-  }
+	public static int GetIpVecSize(IpointVector vec) {
+		return surfjnimoduleJNI.Ipoint_GetIpVecSize(IpointVector.getCPtr(vec), vec);
+	}
 
-  public static Ipoint GetIpointAt(IpointVector vec, int index) {
-    return new Ipoint(surfjnimoduleJNI.Ipoint_GetIpointAt(IpointVector.getCPtr(vec), vec, index), false);
-  }
+	public static Ipoint GetIpointAt(IpointVector vec, int index) {
+		return new Ipoint(surfjnimoduleJNI.Ipoint_GetIpointAt(IpointVector.getCPtr(vec), vec, index), false);
+	}
 
-  public Ipoint() {
-    this(surfjnimoduleJNI.new_Ipoint(), true);
-  }
+	public Ipoint() {
+		this(surfjnimoduleJNI.new_Ipoint(), true);
+	}
 
-  public void setX(float value) {
-    surfjnimoduleJNI.Ipoint_x_set(swigCPtr, this, value);
-  }
+	public void setX(float value) {
+		surfjnimoduleJNI.Ipoint_x_set(swigCPtr, this, value);
+	}
 
-  public float getX() {
-    return surfjnimoduleJNI.Ipoint_x_get(swigCPtr, this);
-  }
+	public float getX() {
+		return surfjnimoduleJNI.Ipoint_x_get(swigCPtr, this);
+	}
 
-  public void setY(float value) {
-    surfjnimoduleJNI.Ipoint_y_set(swigCPtr, this, value);
-  }
+	public void setY(float value) {
+		surfjnimoduleJNI.Ipoint_y_set(swigCPtr, this, value);
+	}
 
-  public float getY() {
-    return surfjnimoduleJNI.Ipoint_y_get(swigCPtr, this);
-  }
+	public float getY() {
+		return surfjnimoduleJNI.Ipoint_y_get(swigCPtr, this);
+	}
 
-  public void setScale(float value) {
-    surfjnimoduleJNI.Ipoint_scale_set(swigCPtr, this, value);
-  }
+	public void setScale(float value) {
+		surfjnimoduleJNI.Ipoint_scale_set(swigCPtr, this, value);
+	}
 
-  public float getScale() {
-    return surfjnimoduleJNI.Ipoint_scale_get(swigCPtr, this);
-  }
+	public float getScale() {
+		return surfjnimoduleJNI.Ipoint_scale_get(swigCPtr, this);
+	}
 
-  public void setOrientation(float value) {
-    surfjnimoduleJNI.Ipoint_orientation_set(swigCPtr, this, value);
-  }
+	public void setOrientation(float value) {
+		surfjnimoduleJNI.Ipoint_orientation_set(swigCPtr, this, value);
+	}
 
-  public float getOrientation() {
-    return surfjnimoduleJNI.Ipoint_orientation_get(swigCPtr, this);
-  }
+	public float getOrientation() {
+		return surfjnimoduleJNI.Ipoint_orientation_get(swigCPtr, this);
+	}
 
-  public void setLaplacian(int value) {
-    surfjnimoduleJNI.Ipoint_laplacian_set(swigCPtr, this, value);
-  }
+	public void setLaplacian(int value) {
+		surfjnimoduleJNI.Ipoint_laplacian_set(swigCPtr, this, value);
+	}
 
-  public int getLaplacian() {
-    return surfjnimoduleJNI.Ipoint_laplacian_get(swigCPtr, this);
-  }
+	public int getLaplacian() {
+		return surfjnimoduleJNI.Ipoint_laplacian_get(swigCPtr, this);
+	}
 
-  public void setDescriptor(float[] value) {
-    surfjnimoduleJNI.Ipoint_descriptor_set(swigCPtr, this, value);
-  }
+	public void setDescriptor(float[] value) {
+		surfjnimoduleJNI.Ipoint_descriptor_set(swigCPtr, this, value);
+	}
 
-  public float[] getDescriptor() {
-    return surfjnimoduleJNI.Ipoint_descriptor_get(swigCPtr, this);
-  }
+	public float[] getDescriptor() {
+		return surfjnimoduleJNI.Ipoint_descriptor_get(swigCPtr, this);
+	}
 
-  public void setDx(float value) {
-    surfjnimoduleJNI.Ipoint_dx_set(swigCPtr, this, value);
-  }
+	public void setDx(float value) {
+		surfjnimoduleJNI.Ipoint_dx_set(swigCPtr, this, value);
+	}
 
-  public float getDx() {
-    return surfjnimoduleJNI.Ipoint_dx_get(swigCPtr, this);
-  }
+	public float getDx() {
+		return surfjnimoduleJNI.Ipoint_dx_get(swigCPtr, this);
+	}
 
-  public void setDy(float value) {
-    surfjnimoduleJNI.Ipoint_dy_set(swigCPtr, this, value);
-  }
+	public void setDy(float value) {
+		surfjnimoduleJNI.Ipoint_dy_set(swigCPtr, this, value);
+	}
 
-  public float getDy() {
-    return surfjnimoduleJNI.Ipoint_dy_get(swigCPtr, this);
-  }
+	public float getDy() {
+		return surfjnimoduleJNI.Ipoint_dy_get(swigCPtr, this);
+	}
 
-  public void setClusterIndex(int value) {
-    surfjnimoduleJNI.Ipoint_clusterIndex_set(swigCPtr, this, value);
-  }
+	public void setClusterIndex(int value) {
+		surfjnimoduleJNI.Ipoint_clusterIndex_set(swigCPtr, this, value);
+	}
 
-  public int getClusterIndex() {
-    return surfjnimoduleJNI.Ipoint_clusterIndex_get(swigCPtr, this);
-  }
+	public int getClusterIndex() {
+		return surfjnimoduleJNI.Ipoint_clusterIndex_get(swigCPtr, this);
+	}
 
+//	/**
+//	 * Takes two vectors of descriptor points and populates the third vector, matchPoints, with matched 
+//	 * points from both vectors.
+//	 * @param oldPoints
+//	 * @param newPoints
+//	 * @param matchPoints
+//	 * @author Charles Norona
+//	 */
+//	public void getMatches(IpointVector oldPoints, IpointVector newPoints, IpPairVector matchPoints)
+//	{
+//		//surfjnimoduleJNI.getMatches(swigCPtr, oldPoints, swigCPtr, newPoints, swigCPtr, matchPoints);
+//		surfjnimodule.getMatches(oldPoints, newPoints, matchPoints);
+//		//surfjnimoduleJNI.Ipoint_x_set(swigCPtr, this, value);
+//		//surfjnimoduleJNI.Ipoint_x_set(jarg1, jarg1_, jarg2)
+//		//void getMatches(IpVec &ipts1, IpVec &ipts2, IpPairVec &matches)
+//	}
 }
