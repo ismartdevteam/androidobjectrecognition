@@ -1,0 +1,4 @@
+This project is a term project for the course, COT 5930 - Digital Image Processing, with Dr. Oge Marques. The project is aimed to create an application that will test the abilities of mobile devices to perform object recognition tasks and computations without distributed computing resources.
+
+**December 17th, 2010 Update:**
+The project has been updated with relevant documents and material from the latter part of the course. As mentioned in the presentation there is still a considerable amount of work and as noted by Dr. Marques the SURF mechanism should be much more robust than it has been performing. This problem has been noted in the "Issues" section.
